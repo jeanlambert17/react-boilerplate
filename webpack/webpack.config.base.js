@@ -1,5 +1,4 @@
 const path = require('path');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Dotenv = require('dotenv-webpack');
 
@@ -14,7 +13,8 @@ module.exports = {
 		path: path.join(__dirname, '../dist'),
 		filename: 'js/[name].bundle.js',
 		chunkFilename: 'js/[name].js',
-		publicPath: '../dist/'
+		// publicPath: '../dist/'
+		publicPath: '/dist'
 	},
 
 	optimization: {
@@ -95,7 +95,6 @@ module.exports = {
 
 	// Plugins
 	plugins: [
-		// new HtmlWebpackPlugin(),
 		new MiniCssExtractPlugin({
 			filename: 'css/[name].css',
 			chunkFilename: 'css/[id].css'

@@ -1,15 +1,18 @@
 import React from 'react';
 // Components
-import Message from '../common/components/welcome';
+import Welcome from '../common/components/welcome';
 // Styles
 import styles from './admin.module.scss';
+// Routes
+import Routes from './routes';
 
 type Props = {};
 
 const Admin = (props: Props) => {
 	return (
 		<div className={styles.container}>
-			<Message text="Admin module!" />
+			<Welcome text="This is the admin module" />
+			<Routes />
 		</div>
 	);
 };
