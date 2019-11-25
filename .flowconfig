@@ -1,0 +1,20 @@
+[ignore]
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+module.name_mapper='^Components' ->'<PROJECT_ROOT>/src/app/components'
+module.name_mapper='^Components' ->'<PROJECT_ROOT>/src/common/components'
+module.name_mapper='^Components' ->'<PROJECT_ROOT>/src/admin/components'
+
+; Extensions
+module.file_ext=.js
+module.file_ext=.jsx
+module.file_ext=.json
+module.file_ext=.css
+module.file_ext=.scss
+[strict]
