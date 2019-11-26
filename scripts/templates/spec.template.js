@@ -1,15 +1,16 @@
 const camelcase = require('camelcase');
 
 module.exports = (name) => {
-	const nameInCamelCase = camelcase(name, { pascalCase: true });
+	const nameInPascalCase = camelcase(name, { pascalCase: true });
+	const nameInCamelCase = camelcase(name);
 
 	return `import React from 'react';
 import { shallow } from 'enzyme';
-import ${nameInCamelCase} from './${name}';
+import ${nameInPascalCase} from './${name}';
 
-describe('<${nameInCamelCase} />', () => {
+describe('<${nameInPascalCase} />', () => {
   it('message', () => {
-    const ${name} = shallow(<${nameInCamelCase} />);
+    const ${nameInCamelCase} = shallow(<${nameInPascalCase} />);
 
   });
 });`;

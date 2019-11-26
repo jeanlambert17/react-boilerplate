@@ -1,14 +1,14 @@
 const camelcase = require('camelcase');
 
 module.exports.asFunction = (name) => {
-	const nameInCamelCase = camelcase(name, { pascalCase: true });
+	const nameInPascalCase = camelcase(name, { pascalCase: true });
 	return `// @flow
 import React, { useState, useEffect } from 'react';
 import styles from './${name}.module.scss';
 
 type Props = {};
 
-const ${nameInCamelCase} = (props: Props) => {
+const ${nameInPascalCase} = (props: Props) => {
   const [state, setState] = useState(null);
 
   useEffect(() => {
@@ -26,12 +26,12 @@ const ${nameInCamelCase} = (props: Props) => {
 }
 
 
-export default ${nameInCamelCase};
+export default ${nameInPascalCase};
   `;
 };
 
 module.exports.asClass = (name) => {
-	const nameInCamelCase = camelcase(name, { pascalCase: true });
+	const nameInPascalCase = camelcase(name, { pascalCase: true });
 	return `import React, { Component } from 'react';
 import styles from './${name}.module.scss';
   
@@ -39,7 +39,7 @@ type Props = {};
 
 type State = {};
 
-class ${nameInCamelCase} extends Component<Props, State> {
+class ${nameInPascalCase} extends Component<Props, State> {
 
   state = {
 
@@ -55,6 +55,6 @@ class ${nameInCamelCase} extends Component<Props, State> {
   }
 }
 
-export default ${nameInCamelCase};
+export default ${nameInPascalCase};
   `;
 };

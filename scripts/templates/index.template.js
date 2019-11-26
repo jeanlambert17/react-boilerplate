@@ -1,9 +1,9 @@
 const camelcase = require('camelcase');
 
 module.exports = (name) => {
-	const nameInCamelCase = camelcase(name, { pascalCase: true });
-	return `import ${nameInCamelCase} from './${name}';
+	const nameInPascalCase = camelcase(name, { pascalCase: true });
+	return `import ${nameInPascalCase} from './${name}';
   
-export default ${nameInCamelCase};
+export default ${nameInPascalCase};
 `;
 };
