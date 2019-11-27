@@ -1,10 +1,11 @@
 const camelcase = require('camelcase');
 
-module.exports = (name) => {
+module.exports = (name, styles) => {
 	const nameInPascalCase = camelcase(name, { pascalCase: true });
 	return `// @flow
-import React from 'react';
-import styles from './${name}.module.scss';
+import React from 'react'; ${
+		styles === 'inline' ? '' : `\nimport styles from './${name}.module.${styles}';`
+	}
 
 type Props = {};
 

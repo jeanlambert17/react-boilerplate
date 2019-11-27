@@ -53,16 +53,23 @@ if (!pathToFolder) {
 
 (async function() {
 	try {
-		const asClass = argv.class ? true : false;
+		const asClass = argv['class'] ? true : false;
+		const inlineStyles = argv['inline-styles'] ? true : false;
+		const cssStyles = argv['css'] ? true : false;
+		const styles = inlineStyles ? 'inline' : cssStyles ? 'css' : 'scss';
 
 		await fsAsync.mkdir(pathToFolder);
 		await fsAsync.writeFile(
 			`${pathToFolder}/${name}.js`,
-			reactTemplate(type, name, asClass)
+			reactTemplate(type, name, { asClass, styles })
 		);
 		await fsAsync.writeFile(`${pathToFolder}/${name}.spec.js`, specTemplate(name));
 		await fsAsync.writeFile(`${pathToFolder}/index.js`, indexTemplate(name));
-		await fsAsync.writeFile(`${pathToFolder}/${name}.module.scss`, scssTemplate());
+		!inlineStyles &&
+			(await fsAsync.writeFile(
+				`${pathToFolder}/${name}.module.${styles}`,
+				scssTemplate()
+			));
 
 		printSuccess('Success');
 		printSuccess(

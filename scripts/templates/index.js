@@ -8,15 +8,15 @@ const indexTemplate = require('./index.template');
 const specTemplate = require('./spec.template');
 const scssTemplate = require('./scss.template');
 
-const reactTemplate = (type, name, asClass = false) => {
+const reactTemplate = (type, name, { asClass = false, styles = 'scss' }) => {
 	if (asClass) {
-		return containerTemplateAsClass(name);
+		return containerTemplateAsClass(name, styles);
 	}
 	if (type === CONTAINER_TYPE) {
-		return containerTemplateAsFunction(name);
+		return containerTemplateAsFunction(name, styles);
 	}
 
-	return componentTemplate(name);
+	return componentTemplate(name, styles);
 };
 
 module.exports = {

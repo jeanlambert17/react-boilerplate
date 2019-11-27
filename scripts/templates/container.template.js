@@ -1,10 +1,12 @@
 const camelcase = require('camelcase');
 
-module.exports.asFunction = (name) => {
+module.exports.asFunction = (name, styles) => {
 	const nameInPascalCase = camelcase(name, { pascalCase: true });
+
 	return `// @flow
-import React, { useState, useEffect } from 'react';
-import styles from './${name}.module.scss';
+import React, { useState, useEffect } from 'react';${
+		styles === 'inline' ? '' : `\nimport styles from './${name}.module.${styles}';`
+	}
 
 type Props = {};
 
@@ -30,10 +32,11 @@ export default ${nameInPascalCase};
   `;
 };
 
-module.exports.asClass = (name) => {
+module.exports.asClass = (name, styles) => {
 	const nameInPascalCase = camelcase(name, { pascalCase: true });
-	return `import React, { Component } from 'react';
-import styles from './${name}.module.scss';
+	return `import React, { Component } from 'react';${
+		styles === 'inline' ? '' : `\nimport styles from './${name}.module.${styles}';`
+	}
   
 type Props = {};
 
