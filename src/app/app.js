@@ -1,7 +1,7 @@
 // @flow
 import React, { Suspense } from 'react';
 // Styles
-import styles from './app.module.scss';
+import classes from './app.module.scss';
 // Router
 import Routes from './routes';
 // Lazy components
@@ -11,7 +11,7 @@ type Props = {};
 
 const App = (props: Props) => {
 	return (
-		<div className={styles.container}>
+		<div className={classes.container}>
 			<Suspense fallback={<h1>Loading message component</h1>}>
 				<Welcome text={'Welcome to my new app!'} />
 			</Suspense>

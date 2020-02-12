@@ -1,12 +1,12 @@
 const camelcase = require('camelcase');
 
 module.exports.asFunction = (name, styles) => {
-	const nameInPascalCase = camelcase(name, { pascalCase: true });
+  const nameInPascalCase = camelcase(name, { pascalCase: true });
 
-	return `// @flow
+  return `// @flow
 import React, { useState, useEffect } from 'react';${
-		styles === 'inline' ? '' : `\nimport styles from './${name}.module.${styles}';`
-	}
+    styles === 'inline' ? '' : `\nimport classes from './${name}.module.${styles}';`
+    }
 
 type Props = {};
 
@@ -21,7 +21,7 @@ const ${nameInPascalCase} = (props: Props) => {
   }, [input])
 
   return (
-    <div className={styles.container}>
+    <div className={classes.container}>
   
     </div>
   );
@@ -33,10 +33,10 @@ export default ${nameInPascalCase};
 };
 
 module.exports.asClass = (name, styles) => {
-	const nameInPascalCase = camelcase(name, { pascalCase: true });
-	return `import React, { Component } from 'react';${
-		styles === 'inline' ? '' : `\nimport styles from './${name}.module.${styles}';`
-	}
+  const nameInPascalCase = camelcase(name, { pascalCase: true });
+  return `import React, { Component } from 'react';${
+    styles === 'inline' ? '' : `\nimport classes from './${name}.module.${styles}';`
+    }
   
 type Props = {};
 
@@ -51,7 +51,7 @@ class ${nameInPascalCase} extends Component<Props, State> {
   render() {
 
     return (
-      <div className={styles.container}>
+      <div className={classes.container}>
     
       </div>
     );

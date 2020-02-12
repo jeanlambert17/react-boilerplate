@@ -3,7 +3,7 @@ node_modules
 # Env
 .env
 # Distribution
-dist
+build
 
 # Flow
 .scss.flow

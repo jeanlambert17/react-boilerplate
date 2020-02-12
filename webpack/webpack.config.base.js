@@ -10,11 +10,10 @@ module.exports = {
 	},
 
 	output: {
-		path: path.join(__dirname, '../dist'),
+		path: path.join(__dirname, '../build'),
 		filename: 'js/[name].bundle.js',
 		chunkFilename: 'js/[name].js',
-		// publicPath: '../dist/'
-		publicPath: '/dist'
+		publicPath: '/'
 	},
 
 	optimization: {
@@ -39,40 +38,10 @@ module.exports = {
 								'@babel/preset-env',
 								'@babel/preset-react',
 								'@babel/preset-flow'
-							]
+							],
+							plugins: ['@babel/plugin-transform-runtime']
 						}
 					}
-				]
-			},
-			{
-				// CSS loaders
-				test: /\.css$/,
-				use: [
-					{
-						loader: MiniCssExtractPlugin.loader
-					},
-					{
-						loader: 'css-loader',
-						options: {
-							modules: true
-						}
-					}
-				]
-			},
-			{
-				// SCSS loaders
-				test: /\.scss$/,
-				use: [
-					{
-						loader: MiniCssExtractPlugin.loader
-					},
-					{
-						loader: 'css-loader',
-						options: {
-							modules: true
-						}
-					},
-					'sass-loader'
 				]
 			},
 			{
@@ -85,7 +54,7 @@ module.exports = {
 							limit: 10000000,
 							fallback: 'file-loader',
 							name: '[name].[ext]',
-							publicPath: '/dist/assets/'
+							publicPath: '/build/assets/'
 						}
 					}
 				]
@@ -95,10 +64,6 @@ module.exports = {
 
 	// Plugins
 	plugins: [
-		new MiniCssExtractPlugin({
-			filename: 'css/[name].css',
-			chunkFilename: 'css/[id].css'
-		}),
 		new Dotenv()
 	]
 };

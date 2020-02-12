@@ -10,7 +10,7 @@ module.exports = merge(baseConfig, {
 	// Dev server configuration for development
 	devServer: {
 		port: 3000,
-		publicPath: '/dist',
+		publicPath: '/build/',
 		disableHostCheck: true,
 		liveReload: true,
 		open: true,
@@ -23,7 +23,24 @@ module.exports = merge(baseConfig, {
 				}
 			]
 		}
-	}
+	},
 
-	// plugins: [new HtmlWebpackPlugin()]
+	module: {
+		rules: [
+			{
+				// CSS loaders
+				test: /\.(sa|sc|c)ss$/,
+				use: [
+					'style-loader',
+					{
+						loader: 'css-loader',
+						options: {
+							modules: true
+						}
+					},
+					'sass-loader'
+				]
+			}
+		]
+	}
 });
